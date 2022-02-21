@@ -17,6 +17,7 @@
   "author": "Gustavo Braz",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.26.0",
     "postcss-preset-env": "^7.4.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
