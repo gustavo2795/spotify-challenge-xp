@@ -8,7 +8,7 @@ const AlbumList = () => {
   return (
     <Container>
       <Text
-        fontAlign="left"
+        textAlign="left"
         fontSize="24px"
         fontColor={Colors.secondary}
         fontWeight="bold"
