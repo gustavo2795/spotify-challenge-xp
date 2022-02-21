@@ -6,7 +6,6 @@ export const Container = styled.div`
   height: 100%;
   &:hover {
     cursor: pointer;
-    background: ${Colors.black};
     opacity: 0.5;
   }
 `;

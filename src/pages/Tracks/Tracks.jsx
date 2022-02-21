@@ -1,10 +1,9 @@
 import React from 'react';
 import { useHistory } from 'react-router';
+
 import Logo from '../../assets/logo.png'
 import ArrowLeft from '../../assets/left-arrow.png'
 
-import SearchInput from '../../components/SearchInput/SearchInput.jsx';
-import AlbumList from '../../components/AlbumList/AlbumList.jsx';
 import { Text } from '../../theme/typography';
 import Colors from '../../theme/colors';
 
@@ -18,6 +17,7 @@ import {
   AlbumImage,
   AlbumDescription,
 } from './styles';
+import TrackList from '../../components/TrackList/TrackList';
 
 const Tracks = () => {
   const history = useHistory();
@@ -40,8 +40,9 @@ const Tracks = () => {
             <Text
               textAlign="center"
               fontSize="16px"
-              fontColor={Colors.primary}
+              fontColor={Colors.secondary}
               fontWeight="bold"
+              marginBottom="10px"
             >
               Nome do álbum grande de duas linhas
             </Text>
@@ -55,7 +56,9 @@ const Tracks = () => {
             </Text>
           </AlbumDescription>
         </AlbumContainer>
-        <TracksContainer />
+        <TracksContainer>
+          <TrackList />
+        </TracksContainer>
       </InfoContainer>
     </Container>
     

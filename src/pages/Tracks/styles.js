@@ -30,13 +30,13 @@ export const InfoContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 20px;
+  justify-content: space-between;
 `
 
 export const AlbumContainer = styled.div`
   width: 30%;
   display: flex;
   flex-direction: column;
-  background: #FFF;
   justify-content: flex-start;
   align-items: center;
 `;
@@ -45,6 +45,7 @@ export const AlbumImage = styled.div`
   width: 250px;
   height: 250px;
   background: #999999;
+  margin-bottom: 20px;
 `;
 
 export const AlbumDescription = styled.div`
@@ -59,5 +60,4 @@ export const TracksContainer = styled.div`
   width: 70%;
   display: flex;
   flex-direction: column;
-  background: #999;
 `;
