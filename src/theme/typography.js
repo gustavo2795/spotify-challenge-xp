@@ -6,6 +6,7 @@ export const Text = styled.span`
   font-weight: ${props => props.fontWeight};
   text-align: ${props => props.textAlign};
   color: ${props => props.fontColor};
+  font-family: 'Roboto';
 `;
 
 export default (props) => <Text {...props} />;
