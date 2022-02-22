@@ -1,10 +1,14 @@
 import React from 'react';
+import { Provider as ReduxProvider } from 'react-redux';
 import AppRoutes from './routes';
+import store from './store';
 import './App.css';
 
 const App = () => {
   return (
-    <AppRoutes />
+    <ReduxProvider store={store}>
+      <AppRoutes />
+    </ReduxProvider>
   )
 };
 

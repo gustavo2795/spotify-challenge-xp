@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Logo from '../../assets/logo.png'
 import ArrowLeft from '../../assets/left-arrow.png'
@@ -18,9 +19,14 @@ import {
   AlbumDescription,
 } from './styles';
 import TrackList from '../../components/TrackList/TrackList';
+import { capitalize } from 'lodash';
 
 const Tracks = () => {
   const history = useHistory();
+  const { selectedAlbumInfo } = useSelector((state) => {
+    return state.spotifyReducer;
+  });
+  console.log(selectedAlbumInfo);
   return (
     <>
     <ImageContainer>
@@ -35,7 +41,9 @@ const Tracks = () => {
       </BackButton>
       <InfoContainer>
         <AlbumContainer>
-          <AlbumImage />
+          <AlbumImage>
+            <img width="250px" height="250px" src={selectedAlbumInfo.images[1].url} />
+          </AlbumImage>
           <AlbumDescription>
             <Text
               textAlign="center"
@@ -44,7 +52,7 @@ const Tracks = () => {
               fontWeight="bold"
               marginBottom="10px"
             >
-              Nome do álbum grande de duas linhas
+              {capitalize(selectedAlbumInfo.name)}
             </Text>
             <Text
               textAlign="center"
@@ -52,12 +60,12 @@ const Tracks = () => {
               fontColor={Colors.primary}
               fontWeight="regular"
             >
-              Nome do artista grande de duas linhas
+              {capitalize(selectedAlbumInfo.artists[0].name)}
             </Text>
           </AlbumDescription>
         </AlbumContainer>
         <TracksContainer>
-          <TrackList />
+          <TrackList tracks={selectedAlbumInfo.tracks.items}/>
         </TracksContainer>
       </InfoContainer>
     </Container>

@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { Creators } from '../../store/spotify/actions';
 import Logo from '../../assets/logo.png'
 
 import SearchInput from '../../components/SearchInput/SearchInput.jsx';
@@ -10,7 +12,49 @@ import Colors from '../../theme/colors';
 import { ImageContainer, Container } from './styles';
 
 const Home = () => {
+  const storagedToken = sessionStorage.getItem('token');
   const history = useHistory();
+  const dispatch = useDispatch();
+  const { loading, token, artists, albums, tracks, lastSearchs } = useSelector((state) => {
+    return state.spotifyReducer;
+  });
+  const [searchString, setSearchString] = useState('');
+  const [localAlbums, setLocalAlbums] = useState([]);
+
+  const checkExistingString = (valueToFind) => {
+    // indexOf function return -1 when didn't find
+    return lastSearchs.lastStrings.indexOf(valueToFind);
+  }
+
+  useEffect(() => {
+    if (!token && !storagedToken) {
+      console.log('NAO TEM TOKEN');
+      history.push('/login');
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (searchString) {
+      const delayDebounceFn = setTimeout(() => {
+        const index = checkExistingString(searchString);
+        console.log(index);
+        if (index === -1) {
+          const payload = { searchString: searchString, token: storagedToken};
+          dispatch(Creators.searchAlbumsTracksArtist(payload));
+        } else {
+          setLocalAlbums(lastSearchs.lastAlbums[index]);
+        };
+      }, 2000);
+      return () => clearTimeout(delayDebounceFn);
+    }
+  }, [searchString]);
+
+  useEffect(() => {
+    if (albums) {
+      setLocalAlbums(albums);
+    }
+  }, [albums])
+
   return (
     <>
     <ImageContainer>
@@ -20,10 +64,12 @@ const Home = () => {
       <Text fontAlign="left" fontSize="18px" fontColor={Colors.secondary}>
         Busque por artistas, álbuns ou músicas
       </Text>
-      <SearchInput />
-      <AlbumList />
+      <SearchInput
+        searchString={searchString}
+        setSearchString={setSearchString}
+      />
+      <AlbumList searchString={searchString} albums={localAlbums}/>
     </Container>
-    <button onClick={() => history.push('/login')}>Login</button>
     </>
   )
 };
