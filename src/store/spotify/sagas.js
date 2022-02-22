@@ -4,9 +4,10 @@ import {
   call,
   select
 } from 'redux-saga/effects';
+import qs from 'qs';
 import Types from './types';
 import axios from 'axios';
-import { getLastSearchs, getLocalToken } from './selectors';
+import { getLastSearchs } from './selectors';
 
 async function getToken() {
   let token = '';
@@ -92,7 +93,7 @@ function* handleSearch({ payload }) {
   }
 };
 
-async function getAlbumInfo(url, token) {
+async function getAlbumInfo({url, token}) {
   let data = null;
   data = axios(url, {
     params: {
@@ -112,9 +113,8 @@ async function getAlbumInfo(url, token) {
 };
 
 function* handleAlbumInfo({ payload }) {
-  const token = yield select(getLocalToken);
   try {
-    const data = yield call(getAlbumInfo, payload, token);
+    const data = yield call(getAlbumInfo, payload);
     yield put({
       type: Types.GET_ALBUM_INFO_CONCLUDED,
       payload: {

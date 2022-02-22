@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -17,16 +17,20 @@ import {
   InfoContainer,
   AlbumImage,
   AlbumDescription,
+  PlayerContainer,
 } from './styles';
 import TrackList from '../../components/TrackList/TrackList';
 import { capitalize } from 'lodash';
 
 const Tracks = () => {
+  const token = sessionStorage.getItem('token');
   const history = useHistory();
   const { selectedAlbumInfo } = useSelector((state) => {
     return state.spotifyReducer;
   });
+  const [selectedTrack, setSelectedTrack] = useState(null);
   console.log(selectedAlbumInfo);
+
   return (
     <>
     <ImageContainer>
@@ -65,11 +69,12 @@ const Tracks = () => {
           </AlbumDescription>
         </AlbumContainer>
         <TracksContainer>
-          <TrackList tracks={selectedAlbumInfo.tracks.items}/>
+          <TrackList 
+            tracks={selectedAlbumInfo.tracks.items}
+          />
         </TracksContainer>
       </InfoContainer>
     </Container>
-    
     </>
   )
 };

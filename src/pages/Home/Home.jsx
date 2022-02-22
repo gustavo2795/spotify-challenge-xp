@@ -22,8 +22,7 @@ const Home = () => {
   const [localAlbums, setLocalAlbums] = useState([]);
 
   const checkExistingString = (valueToFind) => {
-    // indexOf function return -1 when didn't find
-    return lastSearchs.lastStrings.indexOf(valueToFind);
+    return lastSearchs.lastStrings.includes(valueToFind);
   }
 
   useEffect(() => {
@@ -37,8 +36,7 @@ const Home = () => {
     if (searchString) {
       const delayDebounceFn = setTimeout(() => {
         const index = checkExistingString(searchString);
-        console.log(index);
-        if (index === -1) {
+        if (!index) {
           const payload = { searchString: searchString, token: storagedToken};
           dispatch(Creators.searchAlbumsTracksArtist(payload));
         } else {

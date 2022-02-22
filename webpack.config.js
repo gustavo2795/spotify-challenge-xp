@@ -23,9 +23,6 @@ module.exports = {
         test: /\.html$/,
         use: "html-loader"
       },
-      /*Choose only one of the following two: if you're using 
-      plain CSS, use the first one, and if you're using a
-      preprocessor, in this case SASS, use the second one*/
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
@@ -67,7 +64,10 @@ module.exports = {
         ],
       },
     ], 
-  },  
+  },
+  devServer: {
+    historyApiFallback: true,
+  },
   plugins: [
     new HTMLWebpackPlugin({
       template: "index.html"

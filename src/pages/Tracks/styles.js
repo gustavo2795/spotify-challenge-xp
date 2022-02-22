@@ -19,6 +19,7 @@ export const BackButton = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 30px;
+  margin-left: 20px;
   &:hover {
     cursor: pointer;
     text-decoration: underline;
@@ -60,4 +61,10 @@ export const TracksContainer = styled.div`
   width: 70%;
   display: flex;
   flex-direction: column;
+`;
+
+export const PlayerContainer = styled.div`
+  margin-top: 50px;
+  width: 50%;
+  align-self: center;
 `;

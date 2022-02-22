@@ -8,12 +8,14 @@ import { Container, Item, ImageContainer } from './styles';
 import { capitalize } from 'lodash';
 
 const AlbumItem = ({ item }) => {
+  const storagedToken = sessionStorage.getItem('token');
   const dispatch = useDispatch();
   const history = useHistory();
 
   const handleSelectAlbum = () => {
     const url = item.href;
-    dispatch(Creators.getAlbumInfo(url));
+    const payload = {url: url, token: storagedToken}
+    dispatch(Creators.getAlbumInfo(payload));
     setTimeout(() => {
       history.push(`/tracks/${item.id}`);
     }, 1000)
