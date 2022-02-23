@@ -22,3 +22,5 @@
 ## Gerando builds 👷🏻‍♂️
 - Para gerar uma build utilize o comando `yarn/npm run build:dev` passando o ambiente desejado (dev, hml, prd).
 
+## Demo 🤘🏼
+![xp-challenge](https://user-images.githubusercontent.com/18057855/155253842-057d0a3e-3f25-4fe9-af2c-ee69b4d4485d.gif)
