@@ -1,10 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Text } from '../../theme/typography';
 import Colors from '../../theme/colors';
 import { Container, Grid } from './styles';
 import AlbumItem from '../AlbumItem/AlbumItem';
+import { isEmpty } from 'lodash';
 
-const AlbumList = () => {
+const AlbumList = ({ searchString, albums }) => {
+  const { loading } = useSelector((state) => {
+    return state.spotifyReducer;
+  });
+
   return (
     <Container>
       <Text
@@ -13,16 +19,30 @@ const AlbumList = () => {
         fontColor={Colors.secondary}
         fontWeight="bold"
       >
-        Álbuns buscados recentementes
+        {searchString !== '' ? 
+          `Resultados encontrados para "${searchString}"` : 
+          'Álbuns buscados recentementes'
+        }
       </Text>
-      <Grid>
-        <AlbumItem />
-        <AlbumItem />
-        <AlbumItem />
-        <AlbumItem />
-        <AlbumItem />
-        <AlbumItem />
-      </Grid>
+      {loading && (
+        <Text
+          textAlign="left"
+          fontSize="24px"
+          fontColor={Colors.secondary}
+          fontWeight="bold"
+        >
+          Loading...
+        </Text>
+      )}
+      {!isEmpty(albums) && 
+        (
+          <Grid>
+            {albums.map((item) => {
+              return <AlbumItem key={Math.random()} item={item}/>
+            })}
+          </Grid>
+        )
+      }
     </Container>
   )
 };

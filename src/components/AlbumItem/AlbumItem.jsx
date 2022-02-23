@@ -1,16 +1,32 @@
 import React from 'react';
 import { useHistory } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { Creators } from '../../store/spotify/actions';
 import { Text } from '../../theme/typography';
 import Colors from '../../theme/colors';
 import { Container, Item, ImageContainer } from './styles';
+import { capitalize } from 'lodash';
 
-const AlbumItem = () => {
+const AlbumItem = ({ item }) => {
+  const storagedToken = sessionStorage.getItem('token');
+  const dispatch = useDispatch();
   const history = useHistory();
-  const id = 1;
+
+  const handleSelectAlbum = () => {
+    const url = item.href;
+    const payload = {url: url, token: storagedToken}
+    dispatch(Creators.getAlbumInfo(payload));
+    setTimeout(() => {
+      history.push(`/tracks/${item.id}`);
+    }, 1000)
+  }
+
   return (
-    <Container onClick={() => history.push(`/tracks/${id}`)}>
+    <Container onClick={() => handleSelectAlbum()}>
       <Item>
-        <ImageContainer />
+        <ImageContainer>
+          <img width="160px" height="160px" src={item.images[1].url} />
+        </ImageContainer>
         <Text 
           textAlign="center"
           fontSize="16px"
@@ -19,7 +35,7 @@ const AlbumItem = () => {
           marginBottom="10px"
           marginTop="10px"
         >
-          Nome do álbum grande de duas linhas
+          {capitalize(item.name)}
         </Text>
         <Text 
           textAlign="center"
@@ -27,7 +43,7 @@ const AlbumItem = () => {
           fontColor={Colors.primary}
           fontWeight="regular"
         >
-          Nome do artista grande de duas linhas
+          {capitalize(item.artists[0].name)}
         </Text>
       </Item>
     </Container>

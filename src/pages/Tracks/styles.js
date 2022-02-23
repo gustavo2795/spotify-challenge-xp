@@ -19,6 +19,7 @@ export const BackButton = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 30px;
+  margin-left: 20px;
   &:hover {
     cursor: pointer;
     text-decoration: underline;

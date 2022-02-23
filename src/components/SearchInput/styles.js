@@ -7,13 +7,12 @@ export const Input = styled.input`
   font-size: 48px;
   font-weight: bold;
   color: ${Colors.tertiary};
-  padding: 10px;
-  margin: 10px;
   background: ${Colors.background};
   border-top: none;
   border-left: none;
   border-right: none;
   border-bottom: 1px solid ${Colors.primary};
+  margin-top: 15px;
 
   &:focus {
     outline: none;
