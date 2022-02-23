@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { Text } from '../../theme/typography';
 import Colors from '../../theme/colors';
@@ -10,10 +10,6 @@ const AlbumList = ({ searchString, albums }) => {
   const { loading } = useSelector((state) => {
     return state.spotifyReducer;
   });
-
-  useEffect(() => {
-    console.log(albums)
-  }, [albums]);
 
   return (
     <Container>
