@@ -16,7 +16,8 @@
 
 ## Rodando o projeto 🔄
 
-- Para rodar o projeto é necessário baixar as dependências utilizando `yarn ou npm install`. Em seguida utilize o comando `yarn/npm start`.
+- Para rodar o projeto é necessário baixar as dependências utilizando `yarn ou npm install`.
+- Em seguida utilize o comando `yarn/npm start`.
 
 ## Gerando builds 👷🏻‍♂️
 - Para gerar uma build utilize o comando `yarn/npm run build:dev` passando o ambiente desejado (dev, hml, prd).
