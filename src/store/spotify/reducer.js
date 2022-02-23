@@ -3,6 +3,8 @@ import Types from './types';
 const INITIAL_STATE = {
   loading: false,
   error: false,
+  errorGetAlbum: false,
+  errorSearch: false,
   token: null,
   albums: [],
   artists: [],
@@ -26,7 +28,9 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
-        token: action.payload.token
+        token: action.payload.token,
+        errorGetAlbum: false,
+        errorSearch: false,
       }
     case Types.AUTENTICATION_ERROR:
       return {
@@ -56,7 +60,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
-        error: true
+        errorSearch: true
       }
 
     case Types.GET_ALBUM_INFO:
@@ -76,7 +80,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
-        error: true
+        errorGetAlbum: true
       }
 
     default:

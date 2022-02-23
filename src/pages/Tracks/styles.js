@@ -62,9 +62,3 @@ export const TracksContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-export const PlayerContainer = styled.div`
-  margin-top: 50px;
-  width: 50%;
-  align-self: center;
-`;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Creators } from '../../store/spotify/actions';
 import { Text } from '../../theme/typography';
 import Colors from '../../theme/colors';
